@@ -10,7 +10,7 @@ services:
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'http://base-teste.ufnt.edu.br'
         gitlab_rails['initial_root_password'] = 'teste@teste'
-        puma['work_processes'] = 0
+        puma['worker_processes'] = 0  # Corrigi o typo aqui (era "work_processes")
         gitlab_rails['ssl_certificate'] = "/etc/gitlab/ssl/ca.pem"
         gitlab_rails['ssl_certificate_key'] = "/etc/gitlab/ssl/ca.key"
     volumes:
@@ -20,6 +20,6 @@ services:
       - './certs:/etc/gitlab/ssl'
     shm_size: '2gb'
     networks:
-      - network_base: 
+      - network_base
 networks:
   network_base:
