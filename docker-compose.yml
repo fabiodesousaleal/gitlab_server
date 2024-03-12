@@ -20,6 +20,6 @@ services:
       - './certs:/etc/gitlab/ssl'
     shm_size: '2gb'
     networks:
-      - lab_network 
+      - network_base: 
 networks:
-  lab_network:
+  network_base:
