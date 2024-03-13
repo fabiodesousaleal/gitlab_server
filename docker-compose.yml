@@ -7,20 +7,23 @@ services:
     image: gitlab/gitlab-ce
     container_name: gitlab
     restart: always
-    hostname: 'base-teste.ufnt.edu.br'
-    environment:
+    hostname: 'base-producao.ufnt.edu.br'
+    environment:      
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'http://base-teste.ufnt.edu.br'
+        external_url 'http://base-producao.ufnt.edu.br'
         gitlab_rails['initial_root_password'] = 'teste@teste'
         puma['work_processes'] = 0
         gitlab_rails['ssl_certificate'] = "/etc/gitlab/ssl/ca.pem"
         gitlab_rails['ssl_certificate_key'] = "/etc/gitlab/ssl/ca.key"
+      GITLAB_PORT: 8080
+      GITLAB_HTTPS_PORT: 8443
     volumes:
       - './GITLAB_HOME/config:/etc/gitlab'
       - './GITLAB_HOME/logs:/var/log/gitlab'
       - './GITLAB_HOME/data:/var/opt/gitlab'
-      - '$HOME/nginx-proxy/certs:/etc/gitlab/ssl'
+      - './certs:/etc/gitlab/ssl'
     shm_size: '1gb'
-    networks:
-      - network_base 
+    ports:
+      - "8080:80"
+      - "8443:443" 
