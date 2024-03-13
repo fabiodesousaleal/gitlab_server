@@ -7,11 +7,11 @@ services:
     image: gitlab/gitlab-ce
     container_name: gitlab
     restart: always
-    hostname: '127.0.0.1.nip.io'
+    hostname: 'base-teste.ufnt.edu.br'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'http://127.0.0.1.nip.io'
+        external_url 'http://base-teste.ufnt.edu.br'
         gitlab_rails['initial_root_password'] = 'teste@teste'
         puma['work_processes'] = 0
         gitlab_rails['ssl_certificate'] = "/etc/gitlab/ssl/ca.pem"
